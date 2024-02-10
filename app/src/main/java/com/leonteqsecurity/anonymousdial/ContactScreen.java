@@ -52,7 +52,25 @@ public class ContactScreen extends AppCompatActivity {
                     Contact contact = new Contact();
                     contact.setName(displayName);
                     contact.setPhoneNumber(contactNumber);
-                    contactList.add(contact);
+                    if(contactNumber!=null)
+                    {
+
+
+                        if(!contactNumber.startsWith("*"))
+                        {
+                            if(contactNumber.startsWith("07") || contactNumber.startsWith("+254"))
+                            {
+                                contactList.add(contact);
+                            } else if (contactNumber.startsWith("7") && contactNumber.length()==9) {
+                                contact.setPhoneNumber("0"+contactNumber);
+                                contactList.add(contact);
+
+                            }
+
+
+                        }
+
+                    }
                 }
             } finally {
                 cursor.close();
