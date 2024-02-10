@@ -17,3 +17,9 @@ Contributions are welcome! If you have any suggestions, feature requests, or bug
 ## Contact
 
 For any inquiries or support, please contact [martinleontech23@gmail.com](mailto:martinleontech23@gmail.com).
+
+
+
+
+## Snaps
+![snap](snap1.png)
