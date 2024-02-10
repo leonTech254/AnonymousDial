@@ -1,0 +1,83 @@
+<!-- custom_dialog_layout.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="0dp"
+    >
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Call Confirmation"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold"
+        android:padding="16dp"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/dialog_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Are you sure you want to call?"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:padding="16dp"
+        android:gravity="center"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:paddingTop="0dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/call_normal_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Call"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:gravity="center"
+            android:layout_weight="1"
+            style="@style/Widget.Material3.Button" />
+
+        <Button
+            android:id="@+id/reverse_call"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="reverse"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:gravity="center"
+            android:layout_weight="1"
+            style="@style/Widget.Material3.Button" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:gravity="center">
+        <Button
+            android:id="@+id/dialog_call_private_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="private"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:gravity="center"
+            android:layout_weight="1"
+            style="@style/Widget.Material3.Button"
+            />
+        <Button
+            android:id="@+id/dialog_cancel_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:gravity="center"
+            android:layout_weight="1"
+            style="@style/Widget.Material3.Button"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

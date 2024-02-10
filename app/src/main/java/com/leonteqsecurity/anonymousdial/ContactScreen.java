@@ -55,6 +55,7 @@ public class ContactScreen extends AppCompatActivity {
                     if(contactNumber!=null)
                     {
 
+                        contact.setPhoneNumber(contactNumber.replace("-",""));
 
                         if(!contactNumber.startsWith("*"))
                         {
@@ -64,9 +65,7 @@ public class ContactScreen extends AppCompatActivity {
                             } else if (contactNumber.startsWith("7") && contactNumber.length()==9) {
                                 contact.setPhoneNumber("0"+contactNumber);
                                 contactList.add(contact);
-
                             }
-
 
                         }
 

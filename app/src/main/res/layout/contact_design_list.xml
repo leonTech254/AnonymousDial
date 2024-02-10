@@ -38,6 +38,7 @@
            android:layout_width="40sp"
            android:layout_height="40sp"
            android:src="@drawable/phone_in_talk_24px"
+           android:id="@+id/call_user_icon"
 
            />
 
