@@ -64,24 +64,23 @@ public class ContactAdaptor extends RecyclerView.Adapter<ContactAdaptor.ContactV
             @Override
             public void onClick(View v) {
                 makeCall.makeACall(contact,"reverse");
-//                alertDialog.dismiss();
+                alertDialog.dismiss();
             }
         });
         call_normal_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                makeCall.makeACall(contact,"normal");
                 alertDialog.dismiss();
 
             }
         });
 
-
-
-
-
         call_private_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                makeCall.makeACall(contact,"private");
                 alertDialog.dismiss();
             }
         });
