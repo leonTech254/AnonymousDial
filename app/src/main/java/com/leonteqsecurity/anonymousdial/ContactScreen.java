@@ -1,6 +1,8 @@
 package com.leonteqsecurity.anonymousdial;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
@@ -9,42 +11,76 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 
+import com.leonteqsecurity.anonymousdial.Adaptors.ContactAdaptor;
+import com.leonteqsecurity.anonymousdial.Models.Contact;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class ContactScreen extends AppCompatActivity {
+
+    private RecyclerView.Adapter adapter;
+    private List<Contact> contactList;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_screen);
-
+        recyclerView = findViewById(R.id.recycle_view_contact);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        contactList = new ArrayList<>();
+        readContacts(this);
     }
 
-
-
     @SuppressLint("Range")
-    public void ReadContancts(Context context)
-    {
+    public void readContacts(Context context) {
         ContentResolver contentResolver = context.getContentResolver();
-        String[] contactprojection=new String[]
-                {
-                        ContactsContract.Contacts._ID,
-                        ContactsContract.Contacts.DISPLAY_NAME
-                };
-        Cursor cursor=contentResolver.query(ContactsContract.Contacts.CONTENT_URI,contactprojection,null,null,null);
+        String[] contactProjection = new String[]{
+                ContactsContract.Contacts._ID,
+                ContactsContract.Contacts.DISPLAY_NAME
+        };
+        Cursor cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI, contactProjection, null, null, null);
 
-        if(cursor!=null)
-        {
+        if (cursor != null) {
             try {
-                while (cursor.moveToNext())
-                {
+                while (cursor.moveToNext()) {
                     String contactId = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
                     String displayName = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-                    System.out.println(displayName);
+                    String contactNumber = getPhoneNumber(contentResolver, contactId);
+                    Contact contact = new Contact();
+                    contact.setName(displayName);
+                    contact.setPhoneNumber(contactNumber);
+                    contactList.add(contact);
                 }
-
-            }finally {
+            } finally {
                 cursor.close();
             }
-
+            adapter = new ContactAdaptor(contactList, this);
+            recyclerView.setAdapter(adapter);
         }
+    }
+
+    @SuppressLint("Range")
+    private String getPhoneNumber(ContentResolver contentResolver, String contactId) {
+        Cursor phoneCursor = contentResolver.query(
+                ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                null,
+                ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?",
+                new String[]{contactId},
+                null
+        );
+
+        if (phoneCursor != null) {
+            try {
+                if (phoneCursor.moveToFirst()) {
+                    return phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                }
+            } finally {
+                phoneCursor.close();
+            }
+        }
+        return null;
     }
 }
