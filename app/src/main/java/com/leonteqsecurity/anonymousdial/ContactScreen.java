@@ -15,6 +15,8 @@ import com.leonteqsecurity.anonymousdial.Adaptors.ContactAdaptor;
 import com.leonteqsecurity.anonymousdial.Models.Contact;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class ContactScreen extends AppCompatActivity {
@@ -74,9 +76,19 @@ public class ContactScreen extends AppCompatActivity {
             } finally {
                 cursor.close();
             }
-            adapter = new ContactAdaptor(contactList, this);
+            adapter = new ContactAdaptor(sortContactsAlphabetically(contactList), this);
             recyclerView.setAdapter(adapter);
         }
+    }
+
+    public List<Contact> sortContactsAlphabetically(List<Contact> contacts) {
+        Collections.sort(contacts, new Comparator<Contact>() {
+            @Override
+            public int compare(Contact contact1, Contact contact2) {
+                return contact1.getName().compareToIgnoreCase(contact2.getName());
+            }
+        });
+        return contacts;
     }
 
     @SuppressLint("Range")

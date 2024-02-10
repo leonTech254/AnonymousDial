@@ -13,12 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.leonteqsecurity.anonymousdial.Models.Contact;
 import com.leonteqsecurity.anonymousdial.R;
+import com.leonteqsecurity.anonymousdial.Services.MakeCall;
 
 import java.util.List;
 
 public class ContactAdaptor extends RecyclerView.Adapter<ContactAdaptor.ContactViewHolder> {
     List<Contact> contactList;
     private Context context;
+
     public  ContactAdaptor(List<Contact> contacts, Context context)
     {
         this.contactList=contacts;
@@ -42,6 +44,7 @@ public class ContactAdaptor extends RecyclerView.Adapter<ContactAdaptor.ContactV
     }
 
     private void showPopup(Contact contact) {
+        MakeCall makeCall= new MakeCall(context);
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         View dialogView = LayoutInflater.from(context).inflate(R.layout.phone_dialog_layout, null);
         builder.setView(dialogView);
@@ -60,8 +63,8 @@ public class ContactAdaptor extends RecyclerView.Adapter<ContactAdaptor.ContactV
         call_reverse_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                alertDialog.dismiss();
+                makeCall.makeACall(contact,"reverse");
+//                alertDialog.dismiss();
             }
         });
         call_normal_Button.setOnClickListener(new View.OnClickListener() {
