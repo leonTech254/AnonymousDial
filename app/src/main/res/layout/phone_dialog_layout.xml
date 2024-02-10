@@ -66,6 +66,7 @@
             android:gravity="center"
             android:layout_weight="1"
             style="@style/Widget.Material3.Button"
+            android:backgroundTint="@color/red"
             />
         <Button
             android:id="@+id/dialog_cancel_button"

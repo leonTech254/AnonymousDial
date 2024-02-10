@@ -11,7 +11,26 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@color/teal_700"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
         >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CONTACTS"
+            android:textSize="20dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_centerVertical="true"
+            />
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/menu_24px"
+            android:layout_alignParentEnd="true"
+            app:tint="@color/white"
+            android:layout_centerVertical="true"
+            />
     </RelativeLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycle_view_contact"
