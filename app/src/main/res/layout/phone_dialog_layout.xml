@@ -38,8 +38,9 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:gravity="center"
             android:layout_weight="1"
-            style="@style/Widget.Material3.Button" />
-
+            style="@style/Widget.Material3.Button"
+            android:backgroundTint="@color/green"
+            />
         <Button
             android:id="@+id/reverse_call"
             android:layout_width="0dp"
@@ -48,7 +49,10 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:gravity="center"
             android:layout_weight="1"
-            style="@style/Widget.Material3.Button" />
+            style="@style/Widget.Material3.Button"
+
+
+            />
     </LinearLayout>
 
 
