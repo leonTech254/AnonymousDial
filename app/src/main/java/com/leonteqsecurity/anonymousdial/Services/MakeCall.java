@@ -22,7 +22,12 @@ public class MakeCall {
     }
 
     public void makeACall(Contact contact, String callType) {
-        int simIndex=1;
+        int simIndex=0;
+        if(contact.getPhoneNumber().startsWith("+254"))
+        {
+            String PhoneNumber=contact.getPhoneNumber().replace("+254","0");
+            contact.setPhoneNumber(PhoneNumber);
+        }
         if (ContextCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE)
                 != PackageManager.PERMISSION_GRANTED) {
 
@@ -33,16 +38,19 @@ public class MakeCall {
         } else {
             String phoneNumber = contact.getPhoneNumber();
             Intent intent = new Intent(Intent.ACTION_CALL);
-            if(callType=="private")
+            if(callType.equals("private"))
             {
-                phoneNumber="#31#"+contact.getPhoneNumber();
-            } else if (callType=="reverse") {
+
+                phoneNumber="#31#"+contact.getPhoneNumber().replace(" ","");
+                System.out.println("Calling using private"+phoneNumber.replace(" ",""));
+            } else if (callType.equals("reverse")) {
                 phoneNumber="#"+contact.getPhoneNumber();
             }
-            intent.setData(Uri.parse("tel:" + phoneNumber));
-            // Check if the device is running Android Lollipop (API 21) or higher
+            System.out.println("hello "+phoneNumber);
+            String encodedPhoneNumber = Uri.encode(phoneNumber);
+            intent.setData(Uri.parse("tel:" + encodedPhoneNumber));
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-//                intent.putExtra("com.android.phone.extra.slot", simIndex);
+                intent.putExtra("com.android.phone.extra.slot", simIndex);
             }
             context.startActivity(intent);
         }
