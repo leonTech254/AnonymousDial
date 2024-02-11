@@ -48,7 +48,6 @@ public class MakeCall {
             }
             System.out.println("hello "+phoneNumber);
             String encodedPhoneNumber = Uri.encode(phoneNumber);
-            intent.setData(Uri.parse("tel:" + encodedPhoneNumber));
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 intent.putExtra("com.android.phone.extra.slot", simIndex);
             }
