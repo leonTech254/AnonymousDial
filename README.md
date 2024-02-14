@@ -22,4 +22,6 @@ For any inquiries or support, please contact [martinleontech23@gmail.com](mailto
 
 
 ## Snaps
-![snap](snap1.png)
+
+<img src="snap1.png" alt="snap" width="400"/> <img src="snap2.jpeg" alt="snap" width="400"/>
+
