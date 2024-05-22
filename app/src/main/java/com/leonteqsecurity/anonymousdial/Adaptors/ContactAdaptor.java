@@ -19,7 +19,7 @@ import java.util.List;
 
 public class ContactAdaptor extends RecyclerView.Adapter<ContactAdaptor.ContactViewHolder> {
     List<Contact> contactList;
-    private Context context;
+    private final Context context;
 
     public  ContactAdaptor(List<Contact> contacts, Context context)
     {
